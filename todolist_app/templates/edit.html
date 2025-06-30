@@ -1,0 +1,158 @@
+{% extends "base.html" %}
+{% block title %}TaskMate|Edit{% endblock %}
+{% block extra_head %}
+
+  <style>
+
+
+  .container {
+    background: #2c2f4a;
+    border-radius: 12px;
+    width: 100%;
+    max-width: 520px;
+    padding: 30px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.6);
+    margin: 40px auto;
+  }
+
+  h1 {
+    font-weight: 900;
+    font-size: 2rem;
+    margin-bottom: 25px;
+    text-align: center;
+    color: #fdfdfd;
+  }
+
+  label {
+    display: block;
+    margin-bottom: 6px;
+    font-weight: 600;
+    color: #ccc;
+  }
+
+  input[type="text"],
+  input[type="date"] {
+    width: 100%;
+    padding: 12px 15px;
+    border-radius: 6px;
+    border: none;
+    font-size: 1rem;
+    margin-bottom: 20px;
+    outline: none;
+    background: #fff;
+    color: #000;
+    transition: background 0.3s ease;
+  }
+
+  input[type="text"]:focus,
+  input[type="date"]:focus {
+    background: #e0e0e0;
+    color: #000;
+  }
+
+  .form-check-label {
+    color: #ccc;
+    margin-left: 10px;
+  }
+
+  .form-check-input {
+    transform: scale(1.2);
+    margin-top: 5px;
+    cursor: pointer;
+  }
+
+  button {
+    width: 100%;
+    padding: 14px 0;
+    background: #764ba2;
+    border: none;
+    border-radius: 8px;
+    color: #fff;
+    font-weight: 700;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: background 0.3s ease;
+  }
+
+  button:hover {
+    background: #5e386e;
+  }
+
+  @media (max-width: 576px) {
+    .container {
+      padding: 20px;
+      margin: 20px;
+    }
+
+    h1 {
+      font-size: 1.5rem;
+    }
+  }
+  
+    /* Custom Alert Styling */
+.custom-alert {
+  margin: 20px auto;
+  max-width: 600px;
+  padding: 15px 20px;
+  border-radius: 10px;
+  font-size: 1rem;
+  font-weight: 500;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  animation: slideDown 0.5s ease;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+
+.custom-alert.fade-out {
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+
+</style>
+{% endblock%}
+
+{% block content %}
+    <div class="container">
+        {% if messages %}
+  {% for message in messages %}
+    <div class="alert alert-success alert-dismissible fade show custom-alert" role="alert">
+      {{ message }}
+    
+    </div>
+  {% endfor %}
+{% endif %}
+    <h1>✏️ Edit Task</h1>
+    <form method="POST">
+      {% csrf_token %}
+      <label for="task">Task</label>
+      <input type="text" id="task" name="task" value="{{ task.tasks }}" required>
+
+      <label for="deadline">Deadline</label>
+      <input type="date" id="deadline" name="deadline" value="{{ task.deadline|date:'Y-m-d' }}">
+
+      <div class="form-check mb-3">
+        <input class="form-check-input" type="checkbox" name="done" id="done" {% if task.done %}checked{% endif %}>
+        <label class="form-check-label" for="done">Mark as Done</label>
+      </div>
+
+      <button type="submit">Update Task</button>
+    </form>
+  </div>
+  <div class="footer">You manage your todos, backend powered by you.</div>
+  {% endblock%}
+
+
+  {% block extra_js%}
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  {% endblock %}
+  

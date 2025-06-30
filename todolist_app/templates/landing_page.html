@@ -1,0 +1,195 @@
+{% extends "base.html" %}
+{% block title %}TaskeMate|Organize Your Life{% endblock %}
+{% block extra_head %}
+<style>
+    .hero {
+  text-align: center;
+  padding: 100px 20px 60px;
+  max-width: 800px;          
+  margin: 0 auto;            
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+
+    .hero h1 {
+      font-size: 3rem;
+      font-weight: bold;
+    }
+
+    .hero p {
+      font-size: 1.2rem;
+      margin-top: 10px;
+      color: #d1d5f0;
+    }
+
+    #quote-box {
+  font-style: italic;
+  font-size: 1.1rem;
+  color: #e0e0f8;
+  margin-top: 20px;
+  text-align: center;
+}
+
+
+    .btn-cta {
+      margin-top: 30px;
+      padding: 12px 30px;
+      font-size: 1.1rem;
+      border: none;
+      border-radius: 8px;
+      background-color: #764ba2;
+      color: white;
+      transition: background 0.3s;
+    }
+
+    .btn-cta:hover {
+      background-color: #5a3c89;
+    }
+
+    .section-title {
+      font-size: 2rem;
+      font-weight: 600;
+      text-align: center;
+      margin: 60px 0 30px;
+      color: #ffdf00;
+    }
+    #quote-box {
+  font-style: italic;
+  font-size: 1.1rem;
+  color: #e0e0f8;
+  margin-top: 20px;
+  text-align: center; 
+}
+
+    .feature-card {
+      background-color: #2c2f4a;
+      border-radius: 12px;
+      padding: 30px;
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.4);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      color: #ffffff;
+    }
+
+    .feature-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 12px 24px rgba(0, 0, 0, 0.6);
+    }
+
+    .feature-card img {
+      width: 100%;
+      border-radius: 8px;
+      margin-bottom: 15px;
+    }
+
+    .feature-card h5 {
+      color: #a58efb;
+      margin-bottom: 20px;
+    }
+  </style>
+    {% endblock %}
+ {% block content %}
+<section class="hero">
+  <h1>Organize Your Life</h1>
+  <p>Stay focused. Achieve more. With Todo App.</p>
+  <div id="quote-box">“The secret of getting ahead is getting started.” – Mark Twain</div>
+  <a href="{% url 'home' %}" class="btn btn-cta mt-4">Get Started</a>
+</section>
+<!-- Advantages -->
+<section class="container">
+  <h2 class="section-title">✅ Advantages of Using Todo App</h2>
+  <div class="row text-center">
+    <div class="col-md-4">
+      <div class="feature-card">
+        <h5>🎯 Increased Focus</h5>
+        <p>Reduces mental load by keeping tasks out of your head and in one place.</p>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="feature-card">
+        <h5>🧠 Clear Prioritization</h5>
+        <p>Identify what’s urgent and important easily using daily plans and sorting.</p>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="feature-card">
+        <h5>📈 Productivity Boost</h5>
+        <p>Track what’s done and what’s pending to stay motivated and consistent.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="container">
+  <h2 class="section-title">📌 How to Use Todo App Efficiently</h2>
+  <div class="row text-center">
+    <div class="col-md-4">
+      <div class="feature-card">
+        <h5>🗓️ Plan Each Day</h5>
+        <p>Start your morning by planning the day’s tasks and setting deadlines.</p>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="feature-card">
+        <h5>✅ Tick as You Go</h5>
+        <p>Mark tasks as completed to stay encouraged and track progress daily.</p>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="feature-card">
+        <h5>📊 Reflect Weekly</h5>
+        <p>Use weekly summaries to understand how you’re progressing over time.</p>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="container" style="margin-bottom: 80px;">
+  <h2 class="section-title">🌟 Success Stories</h2>
+  <div class="row text-center">
+    
+    <div class="col-md-4">
+      <div class="feature-card">
+        <h5>Rajesh, Student</h5>
+        <p>"Using Todo App helped me score better in my exams by organizing my study schedule. 5⭐"</p>
+      </div>
+    </div>
+    
+    <div class="col-md-4">
+      <div class="feature-card">
+        <h5>Ananya, Software Engineer</h5>
+        <p>"It streamlined my daily workflow, making my meetings and tasks crystal clear. 4.8⭐"</p>
+      </div>
+    </div>
+    
+    <div class="col-md-4">
+      <div class="feature-card">
+        <h5>Vikram, Entrepreneur</h5>
+        <p>"Helped me manage team deliverables and personal goals in one place. It really boost my productivity 4.9⭐"</p>
+      </div>
+    </div>
+
+  </div>
+</section>
+{% endblock %}
+{% block extra_js %}
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+  const quotes = [
+    "“The secret of getting ahead is getting started.” – Mark Twain",
+    "“You may delay, but time will not.” – Benjamin Franklin",
+    "“Focus on being productive instead of busy.” – Tim Ferriss",
+    "“Don’t watch the clock; do what it does. Keep going.” – Sam Levenson"
+  ];
+  let index = 0;
+  const quoteBox = document.getElementById("quote-box");
+
+  setInterval(() => {
+    index = (index + 1) % quotes.length;
+    quoteBox.textContent = quotes[index];
+  }, 5000);
+</script>
+{% endblock %}
+
+
