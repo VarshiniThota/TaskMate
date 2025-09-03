@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 
 import environ
 from pathlib import Path
+import os
 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -86,15 +87,14 @@ WSGI_APPLICATION = 'todolist.wsgi.application'
 #         'NAME': BASE_DIR / 'db.sqlite3',
 #     }
 # }
-DATABASES={
-    'default' :{
-        'ENGINE' : 'django.db.backends.postgresql',
-        'NAME' : 'postgres',
-        'USER' : 'postgres',
-        'PASSWORD' : 'Varsh@1307',
-        'HOST' : 'localhost',
-        'port' : '5432',
-        
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': os.environ.get('DATABASE_NAME'),
+        'USER': os.environ.get('DATABASE_USER'),
+        'PASSWORD': os.environ.get('DATABASE_PASSWORD'),
+        'HOST': os.environ.get('DATABASE_HOST'),
+        'PORT': os.environ.get('DATABASE_PORT'),
     }
 }
 
